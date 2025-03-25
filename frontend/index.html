@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hands-Free Interaction</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function startEyeTracking() {
+            fetch("http://localhost:5000/start-eye-tracking", { method: "POST" })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error("Error:", error));
+        }
+        
+        function stopEyeTracking() {
+            fetch("http://localhost:5000/stop-eye-tracking", { method: "POST" })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error("Error:", error));
+        }
+        
+        function startVoiceControl() {
+            fetch("http://localhost:5000/start-voice-control", { method: "POST" })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error("Error:", error));
+        }
+        
+        function stopVoiceControl() {
+            fetch("http://localhost:5000/stop-voice-control", { method: "POST" })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error("Error:", error));
+        }
+        </script>
+        
+</head>
+<body>
+  <div class="container">
+      <h1>Control Your Laptop Hands-Free</h1>
+      
+      <div class="control-section">
+          <div class="eye-control">
+              <h2>Eye Control</h2>
+              <button onclick="startEyeTracking()">Start Eye Tracking</button>
+              <button class="stop" onclick="stopEyeTracking()">Stop Eye Tracking</button>
+          </div>
+
+          <div class="voice-control">
+              <h2>Voice Control</h2>
+              <button onclick="startVoiceControl()">Start Voice Control</button>
+              <button class="stop" onclick="stopVoiceControl()">Stop Voice Control</button>
+          </div>
+      </div>
+  </div>
+</body>
+
+
+</html>
