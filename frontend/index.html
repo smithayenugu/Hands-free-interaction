@@ -4,33 +4,36 @@
     <title>Hands-Free Interaction</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        function startEyeTracking() {
-            fetch("http://localhost:5000/start-eye-tracking", { method: "POST" })
-                .then(response => response.json())
-                .then(data => alert(data.message))
-                .catch(error => console.error("Error:", error));
-        }
-        
-        function stopEyeTracking() {
-            fetch("http://localhost:5000/stop-eye-tracking", { method: "POST" })
-                .then(response => response.json())
-                .then(data => alert(data.message))
-                .catch(error => console.error("Error:", error));
-        }
-        
-        function startVoiceControl() {
-            fetch("http://localhost:5000/start-voice-control", { method: "POST" })
-                .then(response => response.json())
-                .then(data => alert(data.message))
-                .catch(error => console.error("Error:", error));
-        }
-        
-        function stopVoiceControl() {
-            fetch("http://localhost:5000/stop-voice-control", { method: "POST" })
-                .then(response => response.json())
-                .then(data => alert(data.message))
-                .catch(error => console.error("Error:", error));
-        }
+        const API_BASE_URL = "https://hands-free-interaction-6.onrender.com";  // Replace with your actual Render API URL
+
+function startEyeTracking() {
+    fetch(`${API_BASE_URL}/start-eye-tracking`, { method: "POST" })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error:", error));
+}
+
+function stopEyeTracking() {
+    fetch(`${API_BASE_URL}/stop-eye-tracking`, { method: "POST" })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error:", error));
+}
+
+function startVoiceControl() {
+    fetch(`${API_BASE_URL}/start-voice-control`, { method: "POST" })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error:", error));
+}
+
+function stopVoiceControl() {
+    fetch(`${API_BASE_URL}/stop-voice-control`, { method: "POST" })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error("Error:", error));
+}
+
         </script>
         
 </head>
