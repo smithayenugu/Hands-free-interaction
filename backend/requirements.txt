@@ -1,1 +1,7 @@
-flask\nflask-cors\ngunicorn
+Flask
+Flask-CORS
+numpy
+psutil
+opencv-python
+sounddevice
+gunicorn
