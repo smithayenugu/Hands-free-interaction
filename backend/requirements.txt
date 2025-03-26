@@ -1,6 +1,1 @@
-Flask
-Flask-CORS
-numpy
-psutil
-opencv-python
-sounddevice
+flask\nflask-cors\ngunicorn
