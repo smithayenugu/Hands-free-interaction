@@ -4,35 +4,32 @@
     <title>Hands-Free Interaction</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        const API_BASE_URL = "https://hands-free-interaction-6.onrender.com";  // Replace with your actual Render API URL
+        const API_BASE_URL = "https://hands-free-interaction-6.onrender.com";  // Your Render backend URL
 
-function startEyeTracking() {
-    fetch(`${API_BASE_URL}/start-eye-tracking`, { method: "POST" })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error:", error));
+async function startEyeTracking() {
+    const response = await fetch(`${API_BASE_URL}/start-eye-tracking`, { method: "POST" });
+    const data = await response.json();
+    alert(data.message);
 }
 
-function stopEyeTracking() {
-    fetch(`${API_BASE_URL}/stop-eye-tracking`, { method: "POST" })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error:", error));
+async function stopEyeTracking() {
+    const response = await fetch(`${API_BASE_URL}/stop-eye-tracking`, { method: "POST" });
+    const data = await response.json();
+    alert(data.message);
 }
 
-function startVoiceControl() {
-    fetch(`${API_BASE_URL}/start-voice-control`, { method: "POST" })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error:", error));
+async function startVoiceControl() {
+    const response = await fetch(`${API_BASE_URL}/start-voice-control`, { method: "POST" });
+    const data = await response.json();
+    alert(data.message);
 }
 
-function stopVoiceControl() {
-    fetch(`${API_BASE_URL}/stop-voice-control`, { method: "POST" })
-        .then(response => response.json())
-        .then(data => alert(data.message))
-        .catch(error => console.error("Error:", error));
+async function stopVoiceControl() {
+    const response = await fetch(`${API_BASE_URL}/stop-voice-control`, { method: "POST" });
+    const data = await response.json();
+    alert(data.message);
 }
+
 
         </script>
         
