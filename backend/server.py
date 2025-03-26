@@ -2,6 +2,7 @@ import os
 import subprocess
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import psutil
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}) 
@@ -20,19 +21,33 @@ def home():
 @app.route("/start-eye-tracking", methods=["POST"])
 def start_eye_tracking():
     global eye_tracking_process
+
+    # Ensure process is actually running before rejecting request
+    if eye_tracking_process:
+        if eye_tracking_process.poll() is not None:  # Process is dead
+            eye_tracking_process = None  # Reset it
+
     if eye_tracking_process is None:
-        eye_tracking_process = subprocess.Popen(["python", os.path.join(BASE_DIR, "eye1.py")])
-        return jsonify({"message": "Eye tracking started"}), 200
+        try:
+            eye_tracking_process = subprocess.Popen(["python", os.path.join(BASE_DIR, "eye1.py")])
+            return jsonify({"message": "Eye tracking started"}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
     return jsonify({"message": "Eye tracking is already running"}), 400
 
 @app.route("/stop-eye-tracking", methods=["POST"])
 def stop_eye_tracking():
     global eye_tracking_process
     if eye_tracking_process:
-        eye_tracking_process.terminate()
-        eye_tracking_process = None
-        return jsonify({"message": "Eye tracking stopped"}), 200
+        try:
+            eye_tracking_process.terminate()  # Force stop process
+            eye_tracking_process.wait()  # Ensure it's fully stopped
+            eye_tracking_process = None  # Reset the variable
+            return jsonify({"message": "Eye tracking stopped"}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
     return jsonify({"message": "Eye tracking is not running"}), 400
+
 
 @app.route("/start-voice-control", methods=["POST"])
 def start_voice_control():
