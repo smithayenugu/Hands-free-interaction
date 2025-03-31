@@ -6,30 +6,45 @@
     <script>
         const API_BASE_URL = "https://hands-free-interaction-6.onrender.com";  // Your Render backend URL
 
-async function startEyeTracking() {
-    const response = await fetch(`${API_BASE_URL}/start-eye-tracking`, { method: "POST" });
+        async function startEyeTracking() {
+    const response = await fetch(`${API_BASE_URL}/start-eye-tracking`, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "start" })  // Ensure valid JSON body
+    });
     const data = await response.json();
     alert(data.message);
 }
 
 async function stopEyeTracking() {
-    const response = await fetch(`${API_BASE_URL}/stop-eye-tracking`, { method: "POST" });
+    const response = await fetch(`${API_BASE_URL}/stop-eye-tracking`, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "stop" })  // Ensure valid JSON body
+    });
     const data = await response.json();
     alert(data.message);
 }
 
 async function startVoiceControl() {
-    const response = await fetch(`${API_BASE_URL}/start-voice-control`, { method: "POST" });
+    const response = await fetch(`${API_BASE_URL}/start-voice-control`, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "start" }) 
+    });
     const data = await response.json();
     alert(data.message);
 }
 
 async function stopVoiceControl() {
-    const response = await fetch(`${API_BASE_URL}/stop-voice-control`, { method: "POST" });
+    const response = await fetch(`${API_BASE_URL}/stop-voice-control`, { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "stop" }) 
+    });
     const data = await response.json();
     alert(data.message);
 }
-
 
         </script>
         
